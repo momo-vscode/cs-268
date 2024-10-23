@@ -15,7 +15,11 @@ class BookDetailView extends StatelessWidget {
           leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
-                BlocProvider.of<BookListBloc>(context).add(SortByAuthorEvent());
+                BlocProvider.of<BookListBloc>(context).selectedSort == "Author"
+                    ? BlocProvider.of<BookListBloc>(context)
+                        .add(SortByAuthorEvent())
+                    : BlocProvider.of<BookListBloc>(context)
+                        .add(SortByTitleEvent());
               }),
           title: const Text("Book Detail"),
           centerTitle: true,

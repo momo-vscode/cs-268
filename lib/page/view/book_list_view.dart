@@ -16,8 +16,6 @@ class BookListView extends StatefulWidget {
 }
 
 class _BookListViewState extends State<BookListView> {
-  String selectedSort = "Author";
-
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<BookListBloc>(context);
@@ -44,12 +42,12 @@ class _BookListViewState extends State<BookListView> {
                   child: const Text("Author"),
                   onPressed: () {
                     setState(() {
-                      selectedSort = "Author";
+                      bloc.selectedSort = "Author";
                     });
                     bloc.add(SortByAuthorEvent());
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: selectedSort == "Author"
+                      backgroundColor: bloc.selectedSort == "Author"
                           ? const Color.fromARGB(255, 243, 219, 247)
                           : null)),
               const SizedBox(width: 10),
@@ -57,12 +55,12 @@ class _BookListViewState extends State<BookListView> {
                   child: const Text("Title"),
                   onPressed: () {
                     setState(() {
-                      selectedSort = "Title";
+                      bloc.selectedSort = "Title";
                     });
                     bloc.add(SortByTitleEvent());
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: selectedSort == "Title"
+                      backgroundColor: bloc.selectedSort == "Title"
                           ? const Color.fromARGB(255, 243, 219, 247)
                           : null)),
             ]),
